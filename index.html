@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,10 +17,13 @@
         }
 
         #menu {
-            width: 15%;
+            width: 150px;
             height: 100%;
             margin-top: 5px;
             float: left;
+            transition: width 0.5s ease;
+            padding: 20px;
+
         }
 
         #menu ul {
@@ -28,32 +32,227 @@
             padding: 0;
             overflow: hidden;
             background-color: #333;
+            background-image: url('board.png');
+            width: calc(73% + 0.1vw);
         }
 
         #menu li {
             float: left;
-            width: 100%;
+            width: 100% auto;
+            margin: 3px;
+            border: 2px solid #584b4b;
+            border-radius: 7px;
+            font-size: 25;
+            width: 130px;
+            width: calc(90% + 0.1vw);
+
+
         }
 
         #menu li a {
+            width: 100%;
             display: block;
             color: white;
             text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;            
+            padding: 16px;
+            text-decoration: none;
+            transition: background-color 0.5s ease;
+            /* Add transition property for hover effect */
+            width: calc(90% + 0.1vw);
+
         }
 
         #menu li a:hover {
-            background-color: #111;
+            background-color: #bbbbbb;
         }
 
         #content {
             width: 80%;
             height: 100%;
             float: left;
+            transition: width 0.5s ease;
+        }
+
+        #menu li a,
+        #menu {
+            width: calc(14.8% + 0.1vw);
+            height: calc(50% / -5px);
+            font-size: calc(2vw + -0.2px);
+            padding: 1px;
+            /* Remove curly braces and adjust padding */
+        }
+
+        #video-container {
+            margin: 150px 50px 15px 15px;
+            width: 700px;
+
+            padding-bottom: 38px;
+            padding-left: 52px;
+            padding-top: -1px;
+            position: relative;
+
+        }
+
+        #video {
+            border-radius: 38px;
+        }
+
+        #video {
+            transform: (1deg);
+            filter: blur(1px) grayscale(80%) brightness(150%);
+        }
+
+        .lines {
+            width: 591px;
+            height: 458;
+            border-radius: 38px;
+
+        }
+
+        iframe {
+            box-shadow: 10px 10px 25px 5px rgba(150, 149, 149, 0.11);
+        }
+
+
+        /* @keyframes flicker {
+            0% {
+                box-shadow: 0 0 13px 13px rgba(31, 31, 31, 6.2);
+            }
+
+            10% {
+                box-shadow: 5px 5px 5px 5px rgba(107, 103, 14, 0.2);
+            }
+
+            12% {
+                box-shadow: -1px -1px 2px 2px rgba(39, 38, 12, 0.2);
+            }
+
+            14% {
+                box-shadow: 8px 8px 11px 5px rgba(72, 72, 18, 0.2);
+            }
+
+
+        } */
+
+        .lines::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+
+        }
+
+
+        @keyframes flicker {
+            0% {
+                opacity: 0.27861;
+            }
+
+            5% {
+                opacity: 0.34769;
+            }
+
+            10% {
+                opacity: 0.23604;
+            }
+
+            15% {
+                opacity: 0.90626;
+            }
+
+            20% {
+                opacity: 0.18128;
+            }
+
+            25% {
+                opacity: 0.83891;
+            }
+
+            30% {
+                opacity: 0.65583;
+            }
+
+            35% {
+                opacity: 0.67807;
+            }
+
+            40% {
+                opacity: 0.26559;
+            }
+
+            45% {
+                opacity: 0.84693;
+            }
+
+            50% {
+                opacity: 0.96019;
+            }
+
+            55% {
+                opacity: 0.08594;
+            }
+
+            60% {
+                opacity: 0.20313;
+            }
+
+            65% {
+                opacity: 0.71988;
+            }
+
+            70% {
+                opacity: 0.53455;
+            }
+
+            75% {
+                opacity: 0.37288;
+            }
+
+            80% {
+                opacity: 0.71428;
+            }
+
+            85% {
+                opacity: 0.70419;
+            }
+
+            90% {
+                opacity: 0.7003;
+            }
+
+            95% {
+                opacity: 0.36108;
+            }
+
+            100% {
+                opacity: 0.24387;
+            }
+        }
+
+        .lines::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(105, 103, 103, 0.301);
+            opacity: 0;
+            z-index: 2;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
         }
     </style>
 </head>
+
 <body>
     <div class="bg-image">
         <div id="menu">
@@ -66,10 +265,26 @@
             </ul>
         </div>
         <div id="content">
-            <!-- Add your content here -->
+            <div id="video-container" class="row">
+                <div class="col">
+                    <div class="lines">
+                        <iframe id="video" width="591" height="458"
+                            src="https://www.youtube.com/embed/Xsa5vBJwMl0?list=RDXsa5vBJwMl0"
+                            title="Colter Wall - Evangelina - Acoustic Cover - Little Jack Films" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="col">
+
+                </div>
+
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
